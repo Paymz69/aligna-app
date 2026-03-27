@@ -47,10 +47,14 @@ def email_exists(email):
 # -------------------------
 # HEADER
 # -------------------------
-col1, col2, col3 = st.columns([1, 2, 1])
-
-with col2:
-    st.image("logo.png", width=140)
+st.markdown(
+    """
+    <div style="display: flex; justify-content: center;">
+        <img src="https://raw.githubusercontent.com/Paymz69/aligna-app/main/logo.png" width="140">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown(
     "<h1 style='text-align: center; margin-top: 5px;'>Aligna</h1>",

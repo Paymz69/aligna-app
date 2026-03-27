@@ -116,15 +116,14 @@ st.markdown("---")
 # -------------------------
 # ADMIN VIEW
 # -------------------------
-if st.checkbox("Show signups (admin)"):
-    rows = get_signups()
-    if rows:
-        st.write("### Current signups")
-        st.dataframe(
-            rows,
-            use_container_width=True
-        )
-    else:
-        st.write("No signups yet.")
+st.markdown("---")
+
+with st.expander("🔒 Admin Access"):
+    password = st.text_input("Enter admin password", type="password")
+
+    if password == "aligna_admin_2026":
+        rows = get_signups()
+        st.success(f"Total signups: {len(rows)}")
+        st.dataframe(rows)
 
 st.caption("Aligna © 2026")

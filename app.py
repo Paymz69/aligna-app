@@ -5,8 +5,10 @@ from datetime import datetime
 # -------------------------
 # PAGE CONFIG (must be first Streamlit call)
 # -------------------------
-st.set_page_config(page_title="Aligna", layout="centered")
-
+st.markdown(
+    "<h1 style='text-align: center; margin-top: -10px;'>Aligna</h1>",
+    unsafe_allow_html=True
+)
 # -------------------------
 # DATABASE
 # -------------------------
@@ -47,13 +49,11 @@ def email_exists(email):
 # -------------------------
 # HEADER
 # -------------------------
-st.markdown(
-    """
-    <div style="display: flex; justify-content: center;">
-        <img src="https://raw.githubusercontent.com/Paymz69/aligna-app/main/logo.png" width="140">
-    </div>
-    """,
-    unsafe_allow_html=True
+st.markdown("<div style='text-align: center; margin-top: 10px;'>", unsafe_allow_html=True)
+
+st.image("logo.png", width=180)
+
+st.markdown("</div>", unsafe_allow_html=True)
 )
 
 st.markdown(

@@ -1,15 +1,15 @@
 import streamlit as st
 import sqlite3
 from datetime import datetime
+from PIL import Image
 
-# -------------------------
-# PAGE CONFIG
-# -------------------------
 st.set_page_config(page_title="Aligna", layout="centered")
 
-# -------------------------
-# DATABASE
-# -------------------------
+logo = Image.open("logo.png")
+st.image(logo, width=220)
+
+
+
 conn = sqlite3.connect("waitlist.db", check_same_thread=False)
 cur = conn.cursor()
 
@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS waitlist (
 """)
 conn.commit()
 
-
 def save_signup(name: str, email: str, user_type: str):
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     cur.execute(
@@ -33,30 +32,10 @@ def save_signup(name: str, email: str, user_type: str):
     )
     conn.commit()
 
-
-def get_signups():
-    return cur.execute(
-        "SELECT id, timestamp, name, email, user_type FROM waitlist ORDER BY id DESC"
-    ).fetchall()
-
-
-# -------------------------
-# HERO
-# -------------------------
 st.markdown(
     """
-    <h1 style='text-align: center;'>💘 Aligna</h1>
-    """,
-    unsafe_allow_html=True
-)
-
-st.subheader("Stop wasting time on dating apps.")
-st.markdown("### Get 1–3 high-quality matches per day — based on real compatibility.")
-rows = get_signups()
-st.markdown(f"### 🔥 {len(rows)} people already joined")
-
-st.markdown(
-    """
+    <h1 style='text-align: center;'> Aligna</h1>
+    <h3 style='text-align: center;'>No swiping. Just real alignment.</h3>
     <p style='text-align: center; color: gray;'>
     A dating app for ambitious people who want meaningful, aligned relationships — powered by AI.
     </p>
@@ -64,13 +43,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown("### 🔥 Early users are already joining")
-
 st.markdown("---")
 
-# -------------------------
-# FEATURES
-# -------------------------
 st.subheader("Why Aligna is different")
 
 col1, col2 = st.columns(2)
@@ -87,9 +61,6 @@ with col2:
 
 st.markdown("---")
 
-# -------------------------
-# FORM
-# -------------------------
 st.subheader("Join the waitlist")
 
 name = st.text_input("Your name")
@@ -110,22 +81,7 @@ if st.button("🚀 Join Waitlist"):
             st.error("Signup failed.")
             st.exception(e)
 
-st.info("💡 Designed for serious relationships — not casual swiping")
-st.error("⏳ Limited beta: Only 100 spots available")
+st.warning("🔥 Only first 100 users get early access")
 
 st.markdown("---")
-
-# -------------------------
-# ADMIN VIEW
-# -------------------------
-st.markdown("---")
-
-with st.expander("🔒 Admin Access"):
-    password = st.text_input("Enter admin password", type="password")
-
-    if password == "aligna_admin_2026":
-        rows = get_signups()
-        st.success(f"Total signups: {len(rows)}")
-        st.dataframe(rows)
-
 st.caption("Aligna © 2026")

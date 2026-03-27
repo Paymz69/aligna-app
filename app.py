@@ -3,28 +3,23 @@ import sqlite3
 from datetime import datetime
 from PIL import Image
 
-# ✅ MUST BE FIRST
 st.set_page_config(page_title="Aligna", layout="centered")
 
-# -------------------------
-# LOGO (centered)
-# -------------------------
 col1, col2, col3 = st.columns([1, 2, 1])
-
 with col2:
     st.image("logo.png", width=140)
 
-# spacing
 st.markdown("<br>", unsafe_allow_html=True)
 
-# -------------------------
-# TITLE
-# -------------------------
 st.markdown(
     "<h1 style='text-align: center;'>Aligna</h1>",
     unsafe_allow_html=True
 )
 
+st.markdown(
+    "<h3 style='text-align: center;'>No swiping. Just real alignment.</h3>",
+    unsafe_allow_html=True
+)
 
 conn = sqlite3.connect("waitlist.db", check_same_thread=False)
 cur = conn.cursor()

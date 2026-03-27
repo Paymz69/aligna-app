@@ -52,6 +52,8 @@ st.markdown(
 
 st.subheader("Stop wasting time on dating apps.")
 st.markdown("### Get 1–3 high-quality matches per day — based on real compatibility.")
+rows = get_signups()
+st.markdown(f"### 🔥 {len(rows)} people already joined")
 
 st.markdown(
     """

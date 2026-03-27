@@ -1,10 +1,9 @@
 import streamlit as st
 import sqlite3
 from datetime import datetime
-from PIL import Image
 
 # -------------------------
-# PAGE CONFIG (MUST BE FIRST)
+# PAGE CONFIG (must be first Streamlit call)
 # -------------------------
 st.set_page_config(page_title="Aligna", layout="centered")
 
@@ -46,19 +45,19 @@ def email_exists(email):
     return result is not None
 
 # -------------------------
-# LOGO (CENTERED)
-# -------------------------
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
-    st.image("logo.png", width=140)
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-# -------------------------
 # HEADER
 # -------------------------
 st.markdown(
-    "<h1 style='text-align: center;'>Aligna</h1>",
+    """
+    <div style="text-align: center;">
+        <img src="logo.png" width="140">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<h1 style='text-align: center; margin-top: 5px;'>Aligna</h1>",
     unsafe_allow_html=True
 )
 
@@ -73,10 +72,20 @@ st.markdown(
 )
 
 # -------------------------
-# SOCIAL PROOF 🔥
+# SOCIAL PROOF
 # -------------------------
 rows = get_signups()
-st.markdown(f"<h4 style='text-align: center;'>🔥 {len(rows)} people already joined</h4>", unsafe_allow_html=True)
+count = len(rows)
+
+if count == 1:
+    text = "🔥 1 person already joined"
+else:
+    text = f"🔥 {count} people already joined"
+
+st.markdown(
+    f"<h4 style='text-align: center;'>{text}</h4>",
+    unsafe_allow_html=True
+)
 
 st.markdown("---")
 
@@ -102,17 +111,16 @@ st.markdown("---")
 # -------------------------
 # FORM
 # -------------------------
-st.subheader("Join the waitlist")
+st.subheader("Get early access")
 
 name = st.text_input("Your name")
 email = st.text_input("Email")
-
 user_type = st.selectbox(
     "What best describes you?",
     ["Entrepreneur", "Professional", "Student", "Other"]
 )
 
-if st.button("🚀 Join Waitlist"):
+if st.button("🚀 Get Early Access"):
     if not name.strip() or not email.strip():
         st.error("Please fill all fields.")
     elif email_exists(email.strip()):
@@ -121,13 +129,13 @@ if st.button("🚀 Join Waitlist"):
         save_signup(name.strip(), email.strip(), user_type)
         st.success("You're in 🚀 We'll notify you when we launch.")
 
-# urgency
+st.info("💡 Designed for serious relationships — not casual swiping")
 st.warning("🔥 Only first 100 users get early access")
 
 st.markdown("---")
 
 # -------------------------
-# ADMIN PANEL (HIDDEN)
+# ADMIN PANEL
 # -------------------------
 with st.expander("🔒 Admin Access"):
     password = st.text_input("Enter admin password", type="password")

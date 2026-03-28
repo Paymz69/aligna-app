@@ -5,10 +5,8 @@ from datetime import datetime
 # -------------------------
 # PAGE CONFIG (must be first Streamlit call)
 # -------------------------
-st.markdown(
-    "<h1 style='text-align: center; margin-top: -10px;'>Aligna</h1>",
-    unsafe_allow_html=True
-)
+st.set_page_config(page_title="Aligna", layout="centered")
+
 # -------------------------
 # DATABASE
 # -------------------------
@@ -47,17 +45,16 @@ def email_exists(email):
     return result is not None
 
 # -------------------------
-# HEADER
+# HEADER (LOGO + TITLE)
 # -------------------------
 st.markdown("<div style='text-align: center; margin-top: 10px;'>", unsafe_allow_html=True)
 
-st.image("logo.png", width=180)
+st.image("logo.png", width=220)  # 🔥 bigger logo
 
 st.markdown("</div>", unsafe_allow_html=True)
-)
 
 st.markdown(
-    "<h1 style='text-align: center; margin-top: 5px;'>Aligna</h1>",
+    "<h1 style='text-align: center; margin-top: -15px;'>Aligna</h1>",
     unsafe_allow_html=True
 )
 
@@ -120,7 +117,7 @@ user_type = st.selectbox(
     ["Entrepreneur", "Professional", "Student", "Other"]
 )
 
-if st.button("🚀 Get Early Access"):
+if st.button("🔥 Reserve My Spot"):
     if not name.strip() or not email.strip():
         st.error("Please fill all fields.")
     elif email_exists(email.strip()):
@@ -130,7 +127,7 @@ if st.button("🚀 Get Early Access"):
         st.success("You're in 🚀 We'll notify you when we launch.")
 
 st.info("💡 Designed for serious relationships — not casual swiping")
-st.warning("🔥 Only first 100 users get early access")
+st.error("⏳ Limited beta: Only 100 spots available")
 
 st.markdown("---")
 

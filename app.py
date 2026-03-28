@@ -3,7 +3,7 @@ import sqlite3
 from datetime import datetime
 
 # -------------------------
-# PAGE CONFIG (must be first Streamlit call)
+# PAGE CONFIG
 # -------------------------
 st.set_page_config(page_title="Aligna", layout="centered")
 
@@ -45,16 +45,15 @@ def email_exists(email):
     return result is not None
 
 # -------------------------
-# HEADER (LOGO + TITLE)
+# HEADER
 # -------------------------
-st.markdown("<div style='text-align: center; margin-top: 10px;'>", unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1, 2, 1])
 
-st.image("logo.png", width=220)  # 🔥 bigger logo
-
-st.markdown("</div>", unsafe_allow_html=True)
+with col2:
+    st.image("logo.png", width=220)
 
 st.markdown(
-    "<h1 style='text-align: center; margin-top: -15px;'>Aligna</h1>",
+    "<h1 style='text-align: center; margin-top: -10px;'>Aligna</h1>",
     unsafe_allow_html=True
 )
 
@@ -64,7 +63,7 @@ st.markdown(
 )
 
 st.markdown(
-    "<p style='text-align: center; color: gray;'>A dating app for ambitious people who want meaningful, aligned relationships — powered by AI.</p>",
+    "<p style='text-align: center; color: #9CA3AF;'>A dating app for ambitious people who want meaningful, aligned relationships — powered by AI.</p>",
     unsafe_allow_html=True
 )
 
@@ -74,7 +73,9 @@ st.markdown(
 rows = get_signups()
 count = len(rows)
 
-if count == 1:
+if count == 0:
+    text = "🔥 Be the first to join"
+elif count == 1:
     text = "🔥 1 person already joined"
 else:
     text = f"🔥 {count} people already joined"

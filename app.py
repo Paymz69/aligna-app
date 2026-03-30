@@ -58,7 +58,7 @@ st.markdown(
 )
 
 st.markdown(
-    "<h3 style='text-align: center;'>No swiping. Just real alignment.</h3>",
+    "<h1 style='text-align: center; margin-top: -20px;'>Aligna</h1>",
     unsafe_allow_html=True
 )
 

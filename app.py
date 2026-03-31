@@ -47,14 +47,11 @@ def email_exists(email):
 # -------------------------
 # HEADER (FIXED LOGO + TITLE)
 # -------------------------
-st.markdown(
-    """
-    <div style="text-align: center; margin-top: 20px;">
-        <img src="logo.png" width="120">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col2:
+    st.image("logo.png", width=120)
 
 st.markdown(
     "<h1 style='text-align: center; margin-top: -10px;'>Aligna</h1>",
@@ -70,7 +67,6 @@ st.markdown(
     "<p style='text-align: center; color: #9CA3AF;'>A dating app for ambitious people who want meaningful, aligned relationships — powered by AI.</p>",
     unsafe_allow_html=True
 )
-
 # -------------------------
 # SOCIAL PROOF
 # -------------------------

@@ -128,9 +128,13 @@ st.error("⏳ Limited beta: Only 100 spots available")
 st.markdown("---")
 
 # -------------------------
-# ADMIN PANEL
+# ADMIN PANEL (HIDDEN)
 # -------------------------
-with st.expander("🔒 Admin Access"):
+admin_mode = st.query_params.get("admin")
+
+if admin_mode == "true":
+    st.markdown("### 🔒 Admin Dashboard")
+
     password = st.text_input("Enter admin password", type="password")
 
     if password == "aligna_admin_2026":

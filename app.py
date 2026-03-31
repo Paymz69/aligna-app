@@ -45,21 +45,15 @@ def email_exists(email):
     return result is not None
 
 # -------------------------
-# HEADER (FIXED LOGO + TITLE)
+# HEADER (LOGO ONLY)
 # -------------------------
+left, center, right = st.columns([1.4, 1, 1.4])
 
-col1, col2, col3 = st.columns([1, 2, 1])
-
-with col2:
-    st.image("logo.png", width=120)
-
-st.markdown(
-    "<h1 style='text-align: center; margin-top: -10px;'>Aligna</h1>",
-    unsafe_allow_html=True
-)
+with center:
+    st.image("logo.png", width=90)
 
 st.markdown(
-    "<h3 style='text-align: center;'>No more swiping. Just real connections.</h3>",
+    "<h2 style='text-align: center; margin-top: 10px;'>No more swiping. Just real connections.</h2>",
     unsafe_allow_html=True
 )
 
@@ -67,6 +61,7 @@ st.markdown(
     "<p style='text-align: center; color: #9CA3AF;'>A dating app for ambitious people who want meaningful, aligned relationships — powered by AI.</p>",
     unsafe_allow_html=True
 )
+
 # -------------------------
 # SOCIAL PROOF
 # -------------------------
